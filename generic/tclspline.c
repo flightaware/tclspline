@@ -7,11 +7,12 @@
  *
  * Copyright (c) 1992-1994 The Regents of the University of California.
  * Copyright (c) 1994-1997 Sun Microsystems, Inc.
+ * Copyright (c) 2005 Karl Lehenbauer
  *
  * See the file "license.terms" for information on usage and redistribution of
  * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  *
- * $Id: tclspline.c,v 1.2 2005-11-24 01:52:44 karl Exp $
+ * $Id: tclspline.c,v 1.3 2005-11-24 03:55:53 karl Exp $
  */
 
 #include <tcl.h>
@@ -412,6 +413,16 @@ tclspline_splineObjCmd(clientData, interp, objc, objv)
 	return TCL_ERROR;
     }
 
+    if (nElements < 6) {
+	Tcl_AppendResult(interp, "pointList must contain at least 3 x-y pairs", NULL);
+	return TCL_ERROR;
+    }
+
+    if (nElements & 1) {
+	Tcl_AppendResult(interp, "pointList must contain an even number of elements", NULL);
+	return TCL_ERROR;
+    }
+
     points = (double *)ckalloc (sizeof (double) * nElements);
 
     for (i = 0; i < nElements; i++) {
@@ -430,6 +441,7 @@ tclspline_splineObjCmd(clientData, interp, objc, objv)
     }
 
     ckfree (points);
+    ckfree (outputPoints);
     return TCL_OK;
 }
 
