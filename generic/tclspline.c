@@ -11,7 +11,7 @@
  * See the file "license.terms" for information on usage and redistribution of
  * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  *
- * $Id: tclspline.c,v 1.1.1.1 2005-11-22 06:29:28 karl Exp $
+ * $Id: tclspline.c,v 1.2 2005-11-24 01:52:44 karl Exp $
  */
 
 #include <tcl.h>
@@ -51,7 +51,7 @@
  *--------------------------------------------------------------
  */
 
-void
+static void
 BezierPoints(
     double control[],		/* Array of coordinates for four control
 				 * points: x0, y0, x1, y1, ... x3 y3. */
@@ -102,7 +102,7 @@ BezierPoints(
  *--------------------------------------------------------------
  */
 
-int
+static int
 MakeBezierCurve(
     double *pointPtr,		/* Array of input coordinates: x0, y0, x1, y1,
 				 * etc.. */
@@ -230,8 +230,7 @@ MakeBezierCurve(
  *
  *	Interpret the given set of points as the raw knots and control points
  *	defining a sequence of cubic Bezier curves. Create a new set of points
- *	that fit these Bezier curves. Output points are produced in either of
- *	two forms.
+ *	that fit these Bezier curves. 
  *
  * Results:
  *	The dblPoints array is filled in. The
@@ -243,7 +242,7 @@ MakeBezierCurve(
  *--------------------------------------------------------------
  */
 
-int
+static int
 MakeRawCurve(
     double *pointPtr,		/* Array of input coordinates: x0, y0, x1, y1,
 				 * etc.. */
@@ -364,27 +363,6 @@ MakeRawCurve(
     return outputPoints;
 }
 
-
-/*
-main()
-{
-    int outputPoints;
-    int i;
-
-    double points[10] = {0, 0, 5, 5, 10, 10, 10, 5, 5, 5};
-    double dblPoints[120];
-
-    outputPoints = MakeBezierCurve (points, 5, 10, dblPoints);
-    // outputPoints = MakeRawCurve (points, 5, 10, dblPoints);
-    printf("outputPoints %d\n", outputPoints);
-
-    for (i = 0; i < outputPoints; i++) {
-        printf ("%g %g\n", dblPoints[i * 2], dblPoints[i * 2 + 1]);
-    }
-    exit(0);
-}
-*/
-
 
 /*
  *----------------------------------------------------------------------
@@ -450,6 +428,8 @@ tclspline_splineObjCmd(clientData, interp, objc, objv)
     for (i = 0; i < resultPoints * 2; i++) {
 	Tcl_ListObjAppendElement (interp, resultObj, Tcl_NewDoubleObj(outputPoints[i]));
     }
+
+    ckfree (points);
     return TCL_OK;
 }
 
