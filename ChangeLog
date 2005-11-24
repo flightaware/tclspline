@@ -10,3 +10,7 @@
 
     * README: Cleanup
 
+    * generic/tclspline.c: Fixed memory leak.  More rigorous checking
+      of list contents (at least 6 elements, even number of elements.)
+
+    * tests/spline.test: Some actual, useful, functional tests.
