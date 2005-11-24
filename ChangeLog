@@ -1,4 +1,12 @@
 
-2005-11-20 Karl Lehenbauer <karl-ccom@sc.com>
+2005-11-20 Karl Lehenbauer <karl-ts@sc.com>
 
     * Export 
+
+2005-11-23 Karl Lehenbauer <karl-ts@sc.com>
+
+    * generic/tclsplinetcl.c:  Allow safe interpreters to use the spline
+      function.
+
+    * README: Cleanup
+

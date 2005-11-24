@@ -1,5 +1,5 @@
 /*
- * $Id: tclsplinetcl.c,v 1.1.1.1 2005-11-22 06:29:28 karl Exp $
+ * $Id: tclsplinetcl.c,v 1.2 2005-11-24 01:27:03 karl Exp $
  */
 
 #include <tcl.h>
@@ -22,8 +22,7 @@
  *	A standard Tcl result
  *
  * Side effects:
- *	The tweezer package is created.
- *	One new command "tclspline" is added to the Tcl interpreter.
+ *	One new command "spline" is added to the Tcl interpreter.
  *
  *----------------------------------------------------------------------
  */
@@ -61,14 +60,13 @@ Tclspline_Init(Tcl_Interp *interp)
  *
  *	Initialize the tclspline in a safe interpreter.
  *
- *      This should be totally safe.  We're in too much of a hurry to
- *      figure it out right now.
+ *      This should be totally safe.
  *
  * Results:
  *	A standard Tcl result
  *
  * Side effects:
- *	Very little
+ *	One new command "spline" is added to the Tcl interpreter.
  *
  *----------------------------------------------------------------------
  */
@@ -76,6 +74,25 @@ Tclspline_Init(Tcl_Interp *interp)
 EXTERN int
 Tclspline_SafeInit(Tcl_Interp *interp)
 {
+    /*
+     * This may work with 8.0, but we are using strictly stubs here,
+     * which requires 8.1.
+     */
+    if (Tcl_InitStubs(interp, "8.1", 0) == NULL) {
+	return TCL_ERROR;
+    }
+
+    if (Tcl_PkgRequire(interp, "Tcl", "8.1", 0) == NULL) {
+	return TCL_ERROR;
+    }
+
+    if (Tcl_PkgProvide(interp, "tclspline", PACKAGE_VERSION) != TCL_OK) {
+	return TCL_ERROR;
+    }
+
+    /* Create the spline command  */
+    Tcl_CreateObjCommand(interp, "spline", (Tcl_ObjCmdProc *) tclspline_splineObjCmd, (ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
+
     return TCL_OK;
 }
 

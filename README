@@ -1,28 +1,28 @@
-This is tclspline, new Tcl interface to spline routines from Tk
+This is tclspline, a direct Tcl interface to spline routines from extracted Tk
 
-Version 0.0
+Version 1.0
 
-$Id: README,v 1.1.1.1 2005-11-22 06:29:28 karl Exp $
+$Id: README,v 1.2 2005-11-24 01:27:03 karl Exp $
 
 This package is a freely available open source package under the "Berkeley"
 license, same as Tcl.  You can do virtually anything you like with it, such as 
 modifying it, redistributing it, and selling it either in whole or in part.  
 See the file "license.terms" for complete information.
 
-Gdtcl was written by Karl Lehenbauer.
+tclspline was written by Karl Lehenbauer.
 
 USING TCLSPLINE
 ================
 
 package require tclspline
 
-
-TCLGD QUICK REF
-===============
+set outputPairs [spline [list $x1 $y1 $x2 $y2 $x3 $y3 $x4 $y4 ...]]
 
 
 BUGS
 ====
+
+None known at this time.
 
 CONTENTS
 ========
