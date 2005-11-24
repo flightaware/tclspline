@@ -1,5 +1,9 @@
 /*
- * $Id: tclsplinetcl.c,v 1.2 2005-11-24 01:27:03 karl Exp $
+ * tclspline_Init and tclspline_SafeInit
+ *
+ * Copyright (C) 2005 Karl Lehenbauer
+ *
+ * $Id: tclsplinetcl.c,v 1.3 2005-11-24 03:56:03 karl Exp $
  */
 
 #include <tcl.h>
