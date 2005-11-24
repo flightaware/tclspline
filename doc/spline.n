@@ -1,0 +1,47 @@
+'\"
+'\" Copyright (c) 1993 The Regents of the University of California.
+'\" Copyright (c) 1994-1996 Sun Microsystems, Inc.
+'\" Copyright (c) 2005 Karl Lehenbauer
+'\"
+'\" See the file "license.terms" for information on usage and redistribution
+'\" of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+'\" 
+'\" RCS: @(#) $Id: spline.n,v 1.1 2005-11-24 03:55:22 karl Exp $
+'\" 
+'\".so man.macros
+.TH read n 0.0 TclSpline "Spline Extension for Tcl"
+.BS
+'\" Note:  do not modify the .SH NAME line immediately below!
+.SH NAME
+spline \- Generate a set of quadratic splines based on an input list
+.SH SYNOPSIS
+\fBspline \fR \fInSteps pointList\fR
+.sp
+\fBspline_raw \fInSteps pointList\fR
+.BE
+
+.SH DESCRIPTION
+.PP
+Input is an integer number of steps, \fInSteps\fR, and a list containing
+three or more pairs of x and y coordinates.  \fBspline\fR reads that
+list and generates a new list of x and y coordinate pairs representing
+a curve based on the passed points, rendered as a set of quadratic
+splines: one spline is drawn for the first and second line segments, one 
+for the second and third, and so on.  
+.PP
+Straight-line segments can be generated within
+a curve by duplicating the end-points of the desired line segment.
+.PP
+\fBspline_raw\fR indicates that the list should also be returned as a 
+curve, but the list of coordinates is such that the first coordinate pair 
+(and every third coordinate pair thereafter) is a knot point on a cubic 
+Bezier curve, and the other coordinates are control points on the cubic 
+Bezier curve.
+.PP
+Straight line segments can be generated within a curve by making control 
+points equal to their neighboring knot points.  If the last point is a
+control point and not a knot point, the point is repeated (one or two
+times) so that it also becomes a knot point.
+.PP
+\fInSteps\fR specifies the degree of smoothness desired for curves: each 
+spline will be approximated with \fInSteps\fR line segments.  
