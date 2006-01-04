@@ -2,7 +2,7 @@ This is tclspline, a direct Tcl interface to spline routines from extracted Tk
 
 Version 1.0
 
-$Id: README,v 1.3 2006-01-04 07:20:44 karl Exp $
+$Id: README,v 1.4 2006-01-04 07:28:01 karl Exp $
 
 This package is a freely available open source package under the "Berkeley"
 license, same as Tcl.  You can do virtually anything you like with it, such as 
@@ -16,14 +16,11 @@ USING TCLSPLINE
 
 package require tclspline
 
-<<<<<<< README
-
 TCLSPLINE QUICK REF
 ===================
 
-tclspline nSteps pointList
 
-    set outputPairs [spline [list $x1 $y1 $x2 $y2 $x3 $y3 $x4 $y4 ...]]
+set outputPairs [spline [list $x1 $y1 $x2 $y2 $x3 $y3 $x4 $y4 ...]]
 
 Given a set of coordinate pairs, interpolate steps between the points to
 make it a sort of splined curve.

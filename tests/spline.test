@@ -10,7 +10,7 @@
 # See the file "license.terms" for information on usage and redistribution
 # of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 #
-# RCS: @(#) $Id: spline.test,v 1.1 2005-11-24 03:55:04 karl Exp $
+# RCS: @(#) $Id: spline.test,v 1.2 2006-01-04 07:28:01 karl Exp $
 
 if {[lsearch [namespace children] ::tcltest] == -1} {
     package require tcltest
@@ -33,27 +33,27 @@ test spline-1.3 {spline too many arguments} {
 
 test spline-1.4 {spline not enough values in list} {
     list [catch {spline 10 10} errMsg] $errMsg
-} {1 {pointList must contain at least 3 x-y pairs}}
+} {1 {Number of elements in pointList must be even}}
 
 test spline-1.5 {spline not enough values in list} {
     list [catch {spline 10 {10 10}} errMsg] $errMsg
-} {1 {pointList must contain at least 3 x-y pairs}}
+} {0 {10 10}}
 
 test spline-1.6 {spline not enough values in list} {
     list [catch {spline 10 {10 10 10}} errMsg] $errMsg
-} {1 {pointList must contain at least 3 x-y pairs}}
+} {1 {Number of elements in pointList must be even}}
 
 test spline-1.7 {spline not enough values in list} {
     list [catch {spline 10 {10 10 10 10}} errMsg] $errMsg
-} {1 {pointList must contain at least 3 x-y pairs}}
+} {0 {10 10 10 10}}
 
 test spline-1.8 {spline not enough values in list} {
     list [catch {spline 10 {10 10 10 10 10}} errMsg] $errMsg
-} {1 {pointList must contain at least 3 x-y pairs}}
+} {1 {Number of elements in pointList must be even}}
 
 test spline-1.9 {spline not enough values in list} {
     list [catch {spline 10 {10 10 10 10 10 10 10}} errMsg] $errMsg
-} {1 {pointList must contain an even number of elements}}
+} {1 {Number of elements in pointList must be even}}
 
 test spline-1.10 {spline not enough values in list} {
     list [catch {spline 1 {0 0 1 0 2 1 3 2 4 4 5 8 6 16}} errMsg] $errMsg

@@ -12,7 +12,7 @@
  * See the file "license.terms" for information on usage and redistribution of
  * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  *
- * $Id: tclspline.c,v 1.4 2006-01-04 07:20:44 karl Exp $
+ * $Id: tclspline.c,v 1.5 2006-01-04 07:28:01 karl Exp $
  */
 
 #include <tcl.h>
@@ -427,6 +427,7 @@ tclspline_splineObjCmd(clientData, interp, objc, objv)
 
     if (nElements % 2 != 0) {
 	Tcl_SetObjResult (interp, Tcl_NewStringObj ("Number of elements in pointList must be even", -1));
+	return TCL_ERROR;
     }
 
     /* If they only sent us one or two pairs, it's not enough to spline,
