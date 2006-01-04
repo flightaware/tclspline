@@ -1,7 +1,13 @@
 
-2005-11-20 Karl Lehenbauer <karl-ts@sc.com>
+2006-01-04 Karl Lehenbauer <karl-ts@sc.com>
+    * Make it not dump core if the passed point list is empty.
 
-    * Export 
+    * Require an even number of elements in the point list.
+
+    * Make it return the passed list unchanged if the point list contains
+      only 2 or 4 points (one or two coordinate pairs.)
+
+    * Bumped version to 1.0
 
 2005-11-23 Karl Lehenbauer <karl-ts@sc.com>
 
@@ -14,3 +20,5 @@
       of list contents (at least 6 elements, even number of elements.)
 
     * tests/spline.test: Some actual, useful, functional tests.
+
+2005-11-20 Karl Lehenbauer <karl-ts@sc.com>

@@ -12,7 +12,7 @@
  * See the file "license.terms" for information on usage and redistribution of
  * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  *
- * $Id: tclspline.c,v 1.3 2005-11-24 03:55:53 karl Exp $
+ * $Id: tclspline.c,v 1.4 2006-01-04 07:20:44 karl Exp $
  */
 
 #include <tcl.h>
@@ -413,15 +413,32 @@ tclspline_splineObjCmd(clientData, interp, objc, objv)
 	return TCL_ERROR;
     }
 
-    if (nElements < 6) {
-	Tcl_AppendResult(interp, "pointList must contain at least 3 x-y pairs", NULL);
-	return TCL_ERROR;
+    /* Should trying to spline an empty list be an error?  I decided to just
+     * return an empty list. */
+    if (nElements == 0) {
+	return TCL_OK;
     }
 
-    if (nElements & 1) {
-	Tcl_AppendResult(interp, "pointList must contain an even number of elements", NULL);
-	return TCL_ERROR;
+    /* If they passed us an odd number of elements, that's incorrect.
+     *
+     * (Yes I could have written it (nElements % 2) but it compiles to the
+     * same result and this way is much more clear.)
+     */
+
+    if (nElements % 2 != 0) {
+	Tcl_SetObjResult (interp, Tcl_NewStringObj ("Number of elements in pointList must be even", -1));
     }
+
+    /* If they only sent us one or two pairs, it's not enough to spline,
+     * just return the same list that we received.
+     *
+     * Note - Tcl_SetObjResult increments the reference count so you don't
+     *        need to worry about it.
+     */
+
+     if (nElements < 6) {
+	 Tcl_SetObjResult (interp, objv[2]);
+     }
 
     points = (double *)ckalloc (sizeof (double) * nElements);
 
@@ -440,8 +457,8 @@ tclspline_splineObjCmd(clientData, interp, objc, objv)
 	Tcl_ListObjAppendElement (interp, resultObj, Tcl_NewDoubleObj(outputPoints[i]));
     }
 
-    ckfree (points);
-    ckfree (outputPoints);
+    ckfree ((char *) points);
+    ckfree ((char *) outputPoints);
     return TCL_OK;
 }
 
