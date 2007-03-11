@@ -1,4 +1,8 @@
 
+2007-03-11 karl
+    * Update to Tcl Extension Architecture (TEA) 3.6 -- the configure script
+      started failing on newer versions of the OS.
+
 2006-01-04 Karl Lehenbauer <karl-ts@sc.com>
     * Make it not dump core if the passed point list is empty.
 
