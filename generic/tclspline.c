@@ -12,7 +12,7 @@
  * See the file "license.terms" for information on usage and redistribution of
  * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  *
- * $Id: tclspline.c,v 1.5 2006-01-04 07:28:01 karl Exp $
+ * $Id: tclspline.c,v 1.6 2007-06-22 13:00:53 karl Exp $
  */
 
 #include <tcl.h>
@@ -439,6 +439,7 @@ tclspline_splineObjCmd(clientData, interp, objc, objv)
 
      if (nElements < 6) {
 	 Tcl_SetObjResult (interp, objv[2]);
+	 return TCL_OK;
      }
 
     points = (double *)ckalloc (sizeof (double) * nElements);

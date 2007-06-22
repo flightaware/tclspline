@@ -1,3 +1,11 @@
+$Id: ChangeLog,v 1.6 2007-06-22 13:00:53 karl Exp $
+
+2007-06-22 karl
+    * A missing "return TCL_OK" in the code path that handles the case where
+      the number of elements being passed are too few to spline was causing
+      Tcl panics because it fell through into code where it didn't belong,
+      causing it to try to set a value into a shared object, causing Tcl
+      to panic.
 
 2007-03-11 karl
     * Update to Tcl Extension Architecture (TEA) 3.6 -- the configure script
