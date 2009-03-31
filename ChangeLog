@@ -1,5 +1,9 @@
 $Id: ChangeLog,v 1.6 2007-06-22 13:00:53 karl Exp $
 
+2009-03-31 karl
+    * Compiles cleanly under Debian.  Added README.Debian with configuration
+      instructions.
+
 2007-06-22 karl
     * A missing "return TCL_OK" in the code path that handles the case where
       the number of elements being passed are too few to spline was causing
