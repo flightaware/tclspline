@@ -1,0 +1,8 @@
+Makefile
+config.log
+config.status
+configure
+autom4te.cache
+libtclspline*
+pkgIndex.tcl
+*.o
