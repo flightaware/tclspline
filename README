@@ -2,8 +2,6 @@ This is tclspline, a direct Tcl interface to spline routines from extracted Tk
 
 Version 1.0
 
-$Id: README,v 1.4 2006-01-04 07:28:01 karl Exp $
-
 This package is a freely available open source package under the "Berkeley"
 license, same as Tcl.  You can do virtually anything you like with it, such as 
 modifying it, redistributing it, and selling it either in whole or in part.  

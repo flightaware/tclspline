@@ -1,6 +1,4 @@
 #
-# tcllauncher configure command for Debian
-#
-# $Id$
+# tclspline configure command for Debian
 #
 ./configure --with-tcl=/usr/lib/tcl8.4 --with-tclinclude=/usr/include/tcl8.4 --enable-symbols

@@ -3,7 +3,8 @@
  *
  * Copyright (C) 2005 Karl Lehenbauer
  *
- * $Id: tclsplinetcl.c,v 1.3 2005-11-24 03:56:03 karl Exp $
+ * Freely redistributable under the Berkeley copyright.  See license.terms
+ * for details.
  */
 
 #include <tcl.h>
