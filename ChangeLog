@@ -1,3 +1,6 @@
+2010-03-22 karl
+    * Upgrade to Tcl Extension Architecture (TEA) 3.7.
+
 2009-03-31 karl
     * Compiles cleanly under Debian.  Added README.Debian with configuration
       instructions.
